@@ -126,3 +126,126 @@ export {
   simulateReplay,
   pruneWeakConnections,
 } from './sleep-consolidation';
+
+// ─── NeurIPS extensions (v0.3.0) ───────────────────────────────────────
+
+// vmPFC Prediction-Error FSRS (NeurIPS Algorithm A)
+export type { VmPFCConfig } from './fsrs-vmPFC';
+export {
+  VMPFC_DEFAULTS,
+  computeKGPredictionError,
+  computeReEncodingFactor,
+  computeAdaptiveFSRSInterval,
+  recordNaturalRecall,
+} from './fsrs-vmPFC';
+
+// Two-Factor Synaptic Hebbian (NeurIPS Algorithm D)
+export type { TwoFactorEdge } from './hebbian-two-factor';
+export {
+  TWO_FACTOR_DEFAULTS,
+  createTwoFactorEdge,
+  hebbianUpdateTwoFactor,
+  getImportance,
+  computeEWCPenalty,
+  decayTwoFactor,
+  fromLegacyEdge,
+} from './hebbian-two-factor';
+
+// Simulation-Selection Sleep (NeurIPS Algorithm C)
+export type {
+  AblationRegistry,
+  ReplayCandidate,
+  SelectionResult,
+  SleepCycleResult,
+  SleepConfig,
+} from './sleep-simulation-selection';
+export {
+  SLEEP_DEFAULTS,
+  generateReplayCandidates,
+  computeTagScore,
+  scoreByTDValue,
+  selectAndApply,
+} from './sleep-simulation-selection';
+
+// Spectral KG Health (NeurIPS Algorithm E)
+export type { SpectralReport } from './spectral-health';
+export {
+  computeLaplacian,
+  computeFiedlerValue,
+  computeSpectralHealth,
+} from './spectral-health';
+
+// Information Bottleneck Budget (NeurIPS Algorithm F)
+export type { IBEpisode } from './ib-budget';
+export {
+  IB_BETA,
+  ibShouldRetain,
+  estimateCompressionCost,
+  estimateRelevanceGain,
+  ibFilterEpisodes,
+} from './ib-budget';
+
+// Dopamine-Modulated Retrieval Routing
+export type {
+  RetrievalRoute,
+  DifficultySignal,
+  DopamineRoutingOptions,
+  DopamineRoutingContext,
+} from './dopamine-routing';
+export { routeRetrieval, routeToHybridOptions } from './dopamine-routing';
+
+// Hopfield Short-Term Memory
+export type {
+  HopfieldPattern,
+  HopfieldOptions,
+  HopfieldRecallResult,
+} from './hopfield-stm';
+export {
+  hopfieldUpdate,
+  hopfieldEnergy,
+  hopfieldRecall,
+  topKHopfieldMatches,
+} from './hopfield-stm';
+
+// Personalized PageRank
+export type {
+  WeightedEdge,
+  PPRGraph,
+  PPROptions,
+  PPRResult,
+  RankedNode,
+} from './personalized-pagerank';
+export {
+  personalizedPageRank,
+  topKByPageRank,
+  undirectedToDirected,
+} from './personalized-pagerank';
+
+// Surprise-Gradient Memory (Variational Free Energy)
+export type {
+  SurpriseObservation,
+  VFEUpdateOptions,
+  RetrievalBoostOptions,
+  EncodingIntervalOptions,
+} from './surprise-gradient-memory';
+export {
+  computeVFEContribution,
+  updateVFEDelta,
+  batchUpdateVFEDeltas,
+  applyVFERetrievalBoost,
+  applyVFEIntervalShrink,
+} from './surprise-gradient-memory';
+
+// Temporal Multi-Route Retrieval
+export type {
+  TemporalRouteKind,
+  OrderingHint,
+  TemporalSubQuery,
+  DecomposedTemporalQuery,
+  RouteHit,
+  RouteResult,
+  FuseRoutesOptions,
+  FusedHit,
+  RouteRunner,
+} from './temporal-multi-route';
+export { decomposeTemporalQuery } from './temporal-multi-route';

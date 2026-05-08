@@ -1,6 +1,6 @@
 {
   "name": "@zensation/algorithms",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Neuroscience-inspired memory algorithms: FSRS spaced repetition, Hebbian learning, Ebbinghaus decay, emotional tagging, Bayesian confidence propagation. Zero dependencies.",
   "type": "module",
   "main": "./dist/index.cjs",
@@ -61,6 +61,56 @@
       "types": "./dist/sleep-consolidation.d.ts",
       "import": "./dist/sleep-consolidation.js",
       "require": "./dist/sleep-consolidation.cjs"
+    },
+    "./fsrs-vmPFC": {
+      "types": "./dist/fsrs-vmPFC.d.ts",
+      "import": "./dist/fsrs-vmPFC.js",
+      "require": "./dist/fsrs-vmPFC.cjs"
+    },
+    "./hebbian-two-factor": {
+      "types": "./dist/hebbian-two-factor.d.ts",
+      "import": "./dist/hebbian-two-factor.js",
+      "require": "./dist/hebbian-two-factor.cjs"
+    },
+    "./sleep-simulation-selection": {
+      "types": "./dist/sleep-simulation-selection.d.ts",
+      "import": "./dist/sleep-simulation-selection.js",
+      "require": "./dist/sleep-simulation-selection.cjs"
+    },
+    "./spectral-health": {
+      "types": "./dist/spectral-health.d.ts",
+      "import": "./dist/spectral-health.js",
+      "require": "./dist/spectral-health.cjs"
+    },
+    "./ib-budget": {
+      "types": "./dist/ib-budget.d.ts",
+      "import": "./dist/ib-budget.js",
+      "require": "./dist/ib-budget.cjs"
+    },
+    "./dopamine-routing": {
+      "types": "./dist/dopamine-routing.d.ts",
+      "import": "./dist/dopamine-routing.js",
+      "require": "./dist/dopamine-routing.cjs"
+    },
+    "./hopfield-stm": {
+      "types": "./dist/hopfield-stm.d.ts",
+      "import": "./dist/hopfield-stm.js",
+      "require": "./dist/hopfield-stm.cjs"
+    },
+    "./personalized-pagerank": {
+      "types": "./dist/personalized-pagerank.d.ts",
+      "import": "./dist/personalized-pagerank.js",
+      "require": "./dist/personalized-pagerank.cjs"
+    },
+    "./surprise-gradient-memory": {
+      "types": "./dist/surprise-gradient-memory.d.ts",
+      "import": "./dist/surprise-gradient-memory.js",
+      "require": "./dist/surprise-gradient-memory.cjs"
+    },
+    "./temporal-multi-route": {
+      "types": "./dist/temporal-multi-route.d.ts",
+      "import": "./dist/temporal-multi-route.js",
+      "require": "./dist/temporal-multi-route.cjs"
     }
   },
   "files": [
