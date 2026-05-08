@@ -2,6 +2,14 @@
 
 All notable changes to ZenBrain are documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.3] — 2026-05-08
+
+### Documentation fix
+
+- Root `README.md` "Want the advanced algorithms?" example fixed: the previous snippet called `computeKGPredictionError({ predicted, observed })` and `computeAdaptiveFSRSInterval({ baseInterval, predictionError })`, both of which are wrong — the actual signatures take embedding arrays and positional arguments. Anyone copy-pasting the old snippet hit a `TypeError: Cannot read properties of undefined`. The example now uses the real API.
+
+No code changes; doc fix only.
+
 ## [0.3.2] — 2026-05-08
 
 ### Documentation cleanup
@@ -83,6 +91,7 @@ Adds 10 advanced algorithms grounded in recent neuroscience and ML research to t
 - Pluggable storage / embeddings / LLM providers.
 - Apache-2.0 license.
 
+[0.3.3]: https://github.com/zensation-ai/zenbrain/releases/tag/v0.3.3
 [0.3.2]: https://github.com/zensation-ai/zenbrain/releases/tag/v0.3.2
 [0.3.0]: https://github.com/zensation-ai/zenbrain/releases/tag/v0.3.0
 [0.2.1]: https://github.com/zensation-ai/zenbrain/releases/tag/v0.2.1

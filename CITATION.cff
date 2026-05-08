@@ -14,7 +14,7 @@ identifiers:
 repository-code: "https://github.com/zensation-ai/zenbrain"
 url: "https://github.com/zensation-ai/zenbrain"
 license: Apache-2.0
-version: 0.3.2
+version: 0.3.3
 date-released: 2026-05-08
 keywords:
   - ai-memory

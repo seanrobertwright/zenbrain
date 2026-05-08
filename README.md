@@ -120,10 +120,13 @@ import {
 } from '@zensation/algorithms/fsrs-vmPFC';
 
 // Couple FSRS scheduling with the prediction-error signal from your
-// knowledge graph: when the KG model is wrong about what the user knows,
-// shrink the next interval; when it's right, push it out.
-const pe = computeKGPredictionError({ predicted: 0.9, observed: 0.4 });
-const nextInterval = computeAdaptiveFSRSInterval({ baseInterval: 14, predictionError: pe });
+// knowledge graph: when the embedding has shifted a lot since the last
+// review (high cosine distance), shrink the next interval; otherwise push
+// it out. Both arrays must have the same length.
+const lastEmbedding = [0.1, 0.2, 0.3, 0.4];
+const currentEmbedding = [0.5, 0.4, 0.1, 0.2];
+const pe = computeKGPredictionError(lastEmbedding, currentEmbedding);
+const nextInterval = computeAdaptiveFSRSInterval(14, pe);
 ```
 
 Each advanced algorithm has its own sub-path (`@zensation/algorithms/spectral-health`, `@zensation/algorithms/ib-budget`, …). All zero dependencies.
