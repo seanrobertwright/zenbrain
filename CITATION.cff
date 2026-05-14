@@ -11,6 +11,9 @@ identifiers:
   - type: doi
     value: 10.5281/zenodo.19353663
     description: "Concept DOI — resolves to the latest deposited version on Zenodo"
+  - type: other
+    value: "arXiv:2604.23878"
+    description: "arXiv preprint identifier (cs.AI)"
 repository-code: "https://github.com/zensation-ai/zenbrain"
 url: "https://github.com/zensation-ai/zenbrain"
 license: Apache-2.0
@@ -40,12 +43,19 @@ abstract: >-
   algorithm package. v0.3.x adds 10 advanced algorithms grounded in
   recent neuroscience and ML research.
 preferred-citation:
-  type: software
+  type: article
   title: "ZenBrain: A Neuroscience-Inspired 7-Layer Memory Architecture for Autonomous AI Systems"
   authors:
     - family-names: Bering
       given-names: Alexander
       orcid: "https://orcid.org/0009-0001-1793-012X"
+  journal: "arXiv preprint"
+  number: "2604.23878"
   doi: 10.5281/zenodo.19353663
-  url: "https://doi.org/10.5281/zenodo.19353663"
+  url: "https://arxiv.org/abs/2604.23878"
   year: 2026
+  month: 4
+  identifiers:
+    - type: other
+      value: "arXiv:2604.23878"
+      description: "arXiv preprint identifier"
