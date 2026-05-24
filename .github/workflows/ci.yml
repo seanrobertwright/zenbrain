@@ -50,6 +50,10 @@ jobs:
       - name: Test adapter-sqlite
         run: cd packages/adapters/sqlite && npx vitest run --passWithNoTests
 
+      # Smoke-test the self-contained example so it cannot silently rot
+      - name: Smoke-test example (basic-chatbot)
+        run: npx tsx examples/basic-chatbot.ts
+
   publish:
     needs: test
     if: startsWith(github.ref, 'refs/tags/v')
