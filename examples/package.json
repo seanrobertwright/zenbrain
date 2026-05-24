@@ -1,0 +1,7 @@
+{
+  "name": "zenbrain-examples",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Runnable ZenBrain usage examples. Run any with: npx tsx examples/<name>.ts (integration examples also need their respective SDK installed)."
+}
