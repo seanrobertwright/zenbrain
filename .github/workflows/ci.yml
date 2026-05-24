@@ -70,11 +70,27 @@ jobs:
       - run: npm install
       - run: cd packages/algorithms && npm run build
       - run: cd packages/core && npm run build
-      - name: Publish algorithms
-        run: cd packages/algorithms && npm publish --provenance --access public
+      # Idempotent: only publish a version that is not already on the registry,
+      # so re-tagging or a tag that touches only one package never fails.
+      - name: Publish algorithms (skip if already published)
+        run: |
+          cd packages/algorithms
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view "@zensation/algorithms@$VERSION" version >/dev/null 2>&1; then
+            echo "@zensation/algorithms@$VERSION already on npm — skipping"
+          else
+            npm publish --provenance --access public
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Publish core
-        run: cd packages/core && npm publish --provenance --access public
+      - name: Publish core (skip if already published)
+        run: |
+          cd packages/core
+          VERSION=$(node -p "require('./package.json').version")
+          if npm view "@zensation/core@$VERSION" version >/dev/null 2>&1; then
+            echo "@zensation/core@$VERSION already on npm — skipping"
+          else
+            npm publish --provenance --access public
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
