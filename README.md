@@ -334,14 +334,12 @@ function updateConfidenceGraph(facts: Fact[], relations: Relation[]) {
 
 ## Extracted From Production
 
-ZenBrain's algorithms are extracted from [ZenAI](https://zensation.ai) — a production AI platform with:
+These aren't toy implementations — ZenBrain's algorithms are extracted from [ZenAI](https://zensation.ai), a production AI platform, and run against real users and real data. Everything claimed here is verifiable in this repository:
 
-- **440,000+** lines of TypeScript
-- **12,000+** passing tests (ZenAI) + **528** tests (ZenBrain: 429 algorithms + 99 core)
-- **60** AI tools across 14 categories
-- **7-layer** memory architecture
-
-These aren't toy implementations. They've been battle-tested with real users, real data, and real edge cases.
+- **528 tests** (429 algorithms + 99 core), all passing
+- **Zero runtime dependencies** — pure TypeScript, dual ESM + CJS, tree-shakeable subpath exports
+- **Reproducible** — `npm ci && npm run build` recreates the published `@zensation/algorithms@0.3.3` (152 files, matching the npm registry)
+- **7-layer** memory architecture grounded in published neuroscience
 
 ## Contributing
 
