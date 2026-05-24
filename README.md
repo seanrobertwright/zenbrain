@@ -1,7 +1,7 @@
 <p align="center">
   <h1 align="center">ZenBrain</h1>
   <p align="center"><strong>The neuroscience-inspired memory system for AI agents.</strong></p>
-  <p align="center">7 memory layers. 22 neuroscience-inspired algorithms. FSRS, Hebbian, Sleep consolidation, Emotional tagging — plus 10 advanced algorithms (vmPFC-FSRS, two-factor Hebbian, simulation-selection sleep, Fiedler-value KG health, IB budget, Hopfield STM, Personalized PageRank, ...).<br/>Pure TypeScript. Zero dependencies. 429 tests. Battle-tested in production.</p>
+  <p align="center">7 memory layers. 22 neuroscience-inspired algorithms. FSRS, Hebbian, Sleep consolidation, Emotional tagging — plus 10 advanced algorithms (vmPFC-FSRS, two-factor Hebbian, simulation-selection sleep, Fiedler-value KG health, IB budget, Hopfield STM, Personalized PageRank, ...).<br/>Pure TypeScript. Zero dependencies. 528 tests. Battle-tested in production.</p>
 </p>
 
 <p align="center">
@@ -115,19 +115,21 @@ import {
 // 1. Schedule a memory with FSRS
 const memory = initFromDecayClass('normal_decay');
 
-// 2. Check recall probability (Ebbinghaus curve)
-const retention = getRetrievability(memory);
+// 2. A week later, check recall probability (Ebbinghaus curve)
+const aWeekLater = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+const retention = getRetrievability(memory, aWeekLater);
 console.log(`Recall probability: ${(retention * 100).toFixed(1)}%`);
+// ~36.8% — retrievability has decayed over the week
 
-// 3. User recalled it — update scheduling
-const updated = updateAfterRecall(memory, 4, retention);
-// Stability increased, next review pushed further out
+// 3. User recalled it anyway — update scheduling
+const updated = updateAfterRecall(memory, 4, retention, aWeekLater);
+// stability 7 -> 8.19: recalling at low retrievability gives a bigger boost
 
 // 4. Tag emotional significance
-const emotion = tagEmotion('I just closed a $2M deal!');
+const emotion = tagEmotion('I am absolutely thrilled — I got the promotion!');
 const weight = computeEmotionalWeight(emotion);
 console.log(`Decay multiplier: ${weight.decayMultiplier}x`);
-// ~2.7x — emotional memories decay nearly 3x slower
+// 2.7x — emotional memories decay nearly 3x slower
 
 // 5. Strengthen knowledge connections (Hebbian)
 const stronger = computeHebbianStrengthening(1.0);
@@ -238,7 +240,7 @@ const dueItems = await memory.getReviewQueue();
 
 | Package | Description | Status |
 |---------|-------------|--------|
-| [`@zensation/algorithms`](./packages/algorithms) | 12 neuroscience algorithms (FSRS, Hebbian, Ebbinghaus, emotional, Bayesian, sleep consolidation, confidence intervals, visualization) | :white_check_mark: Published |
+| [`@zensation/algorithms`](./packages/algorithms) | 22 neuroscience algorithms — 12 core (FSRS, Hebbian, Ebbinghaus, emotional, Bayesian, sleep consolidation, intervals, visualization) + 10 advanced (vmPFC-FSRS, two-factor Hebbian, IB budget, Hopfield STM, …) | :white_check_mark: Published |
 | [`@zensation/core`](./packages/core) | Memory layers, coordinator, adapter interfaces | :white_check_mark: Published |
 | [`@zensation/adapter-postgres`](./packages/adapters/postgres) | PostgreSQL + pgvector storage adapter | :white_check_mark: Ready |
 | [`@zensation/adapter-sqlite`](./packages/adapters/sqlite) | SQLite storage adapter (zero-config) | :white_check_mark: Ready |
@@ -335,10 +337,9 @@ function updateConfidenceGraph(facts: Fact[], relations: Relation[]) {
 ZenBrain's algorithms are extracted from [ZenAI](https://zensation.ai) — a production AI platform with:
 
 - **440,000+** lines of TypeScript
-- **12,000+** passing tests (ZenAI) + **429** tests (ZenBrain)
+- **12,000+** passing tests (ZenAI) + **528** tests (ZenBrain: 429 algorithms + 99 core)
 - **60** AI tools across 14 categories
-- **7-layer** HiMeS memory architecture
-- **Phase 145** of active development
+- **7-layer** memory architecture
 
 These aren't toy implementations. They've been battle-tested with real users, real data, and real edge cases.
 

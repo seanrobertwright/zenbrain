@@ -75,23 +75,25 @@ const memory = initFromDecayClass('normal_decay');
 console.log(memory);
 // { difficulty: 5, stability: 7, nextReview: Date }
 
-// 2. Check if user can recall it
-const retention = getRetrievability(memory);
+// 2. A week later, check recall probability (Ebbinghaus decay)
+const aWeekLater = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
+const retention = getRetrievability(memory, aWeekLater);
 console.log(`Recall probability: ${(retention * 100).toFixed(1)}%`);
+// ~36.8% — retrievability has decayed over the week
 
-// 3. User recalled it with grade 4 (good)
-const updated = updateAfterRecall(memory, 4, retention);
-console.log(`Next review: ${updated.nextReview}`);
-// Stability increased — next review is further out
+// 3. User recalled it anyway with grade 4 (good)
+const updated = updateAfterRecall(memory, 4, retention, aWeekLater);
+console.log(`Stability: ${memory.stability} -> ${updated.stability.toFixed(2)}`);
+// 7 -> 8.19 — recalling at low retrievability gives a bigger boost (desirable difficulty)
 
 // 4. Tag emotional significance
-const emotion = tagEmotion('I just got promoted! This is amazing!');
+const emotion = tagEmotion('I am absolutely thrilled — I got the promotion!');
 console.log(emotion);
-// { sentiment: 0.8+, arousal: 0.7+, valence: 0.9+, significance: 0.85 }
+// { sentiment: 0.55, arousal: 0.35, valence: 0.78, significance: 0.85 }
 
 const weight = computeEmotionalWeight(emotion);
 console.log(`Decay multiplier: ${weight.decayMultiplier}x`);
-// ~2.7x — this memory will decay nearly 3x slower
+// 2.7x — this memory will decay nearly 3x slower
 
 // 5. Strengthen knowledge graph edges via Hebbian learning
 const newWeight = computeHebbianStrengthening(1.0);
